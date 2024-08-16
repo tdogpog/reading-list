@@ -16,7 +16,8 @@
 
     </div>
 
-    <div class="form-container">
+
+    <div id='form-container' class="form-container">
         <form id="form">
             <h2>New Book Entry</h2>
             <input type="text" name="title" id="title" placeholder="Title">   
@@ -29,17 +30,29 @@
             
         </form>
     </div>
+
     <div id="darken" ></div>
+
 
 
     <script>
 
-        document.getElementById('button').addEventListener('click',function())
+        const book_entry_button = document.getElementById('button');
+        const darken_div= document.getElementById('darken');
+        const form_container=document.getElementById('form-container');
+        const submit_button=document.getElementById('submit');
 
-        document.getElementById('submit').addEventListener('click')
+        book_entry_button.addEventListener('click', function() {
+            darken_div.style.display = 'block';
+            form_container.style.display = 'block';
+        });
 
+        // Close the form and darken div when clicking outside the form
+        darken_div.addEventListener('click', function() {
+            darken_div.style.display = 'none';
+            form_container.style.display = 'none';
+        });
 
-        
 
         const myLibrary = [];
 

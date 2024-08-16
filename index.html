@@ -3,22 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Book Library</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="header">
+        <h1>Book Library</h1>
+        <button id="button">New Entry +</button>
+    </div>
 
+    <div class="main">
+
+    </div>
+
+    <div class="form-container">
+        <form id="form">
+            <h2>New Book Entry</h2>
+            <input type="text" name="title" id="title" placeholder="Title">   
+            <input type="text" name="author" id="author" placeholder="Author">
+            <input type="number" name="pages" id="pages" placeholder="Pages">
+            <label id='checkbox'for="read">Have you read this book?
+                <input type='checkbox' name="read" id="read">
+            </label>
+            <button id='submit' type="submit">Submit</button>
+            
+        </form>
+    </div>
+    <div id="darken" ></div>
 
 
     <script>
 
-        const myLibrary = [book1,book2];
+        document.getElementById('button').addEventListener('click',function())
 
+        document.getElementById('submit').addEventListener('click')
+
+
+        
+
+        const myLibrary = [];
+
+        //constructor
         function Book() {
-        // the constructor...
+            this.title=title;
+            this.author=author;
+            this.pages=pages;
+            this.read=read;
+
+        }
+
+        //prototype for each book 
+        Book.prototype.readstatus= function(){
+
+            let readstatus;
+
+            if (this.read){
+                readstatus='read';
+            }
+            else{
+                readstatus='not read yet'
+            }
+            
+        
+            return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
         }
 
         function addBookToLibrary() {
-        // do stuff here
+        
+
         }
 
 
@@ -27,3 +79,4 @@
     
 </body>
 </html>
+

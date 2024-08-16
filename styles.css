@@ -12,7 +12,7 @@ body{
 }
 
 .header{
-    background-color: #f4d7fa;
+    background-color: lightslategray;
     grid-row: 1 / 2;
     display: flex;
     align-items: center;
@@ -21,18 +21,18 @@ body{
 }
 
 .main{
-    background-color: red;
+    background-color: whitesmoke;
     grid-row: 2 / 3;
 }
 
 button{
-    background-color: green;
+    background-color: dodgerblue;
     color: white;
     margin: 20px;
     padding: 10px;
     font-size: 20px;
     border-radius: 20px;
-    border: 1px solid green;
+    border: none;
 }
 
 input{

@@ -12,7 +12,7 @@
         <button id="button">New Entry +</button>
     </div>
 
-    <div class="main">
+    <div class="main" id="main">
 
     </div>
 
@@ -27,7 +27,6 @@
                 <input type='checkbox' name="read" id="read">
             </label>
             <button id='submit' type="submit">Submit</button>
-            
         </form>
     </div>
 
@@ -41,6 +40,8 @@
         const darken_div= document.getElementById('darken');
         const form_container=document.getElementById('form-container');
         const submit_button=document.getElementById('submit');
+        const form=document.getElementById('form');
+        const main=document.getElementById('main');
 
         book_entry_button.addEventListener('click', function() {
             darken_div.style.display = 'block';
@@ -81,10 +82,48 @@
             return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
         }
 
-        function addBookToLibrary() {
-        
+        function addBookToLibrary(title, author, pages, read) {
+            const newBook= new Book(title,author,pages,read);
+            myLibrary.push(newBook);
 
         }
+
+        form.addEventListener('submit',function(event){
+            //uses js instead of browser submit/prevents page refresh
+            event.preventDefault();
+
+            const title=document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const pages = parseInt(document.getElementById('pages').value);
+            const read = document.getElementById('read').checked;
+
+            addBookToLibrary(title,author,pages,read);
+
+            form.reset();
+
+            darken_div.style.display = 'none';
+            form_container.style.display = 'none';
+
+            const mainItem=document.createElement('div');
+
+            const p_title=document.createElement('p');
+            const p_author=document.createElement('p');
+            const p_pages=document.createElement('p');
+            
+            p_title.textContent=title;
+            p_author.textContent=author;
+            p_pages.textContent=pages;
+
+            mainItem.appendChild(p_title);
+            mainItem.appendChild(p_author);
+            mainItem.appendChild(p_pages);
+ 
+            mainItem.classList.add('main-item');
+            main.appendChild(mainItem);
+
+
+
+        });
 
 
 

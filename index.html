@@ -9,7 +9,7 @@
 <body>
     <div class="header">
         <h1>Book Library</h1>
-        <button id="button">New Entry +</button>
+        <button id="button" class="buttons">New Entry +</button>
     </div>
 
     <div class="main" id="main">
@@ -23,10 +23,10 @@
             <input type="text" name="title" id="title" placeholder="Title">   
             <input type="text" name="author" id="author" placeholder="Author">
             <input type="number" name="pages" id="pages" placeholder="Pages">
-            <label id='checkbox'for="read">Have you read this book?
+            <label id='checkbox' for="read">Have you read this book?
                 <input type='checkbox' name="read" id="read">
             </label>
-            <button id='submit' type="submit">Submit</button>
+            <button id='submit' class="submit-button buttons" type="submit">Submit</button>
         </form>
     </div>
 
@@ -58,7 +58,7 @@
         const myLibrary = [];
 
         //constructor
-        function Book() {
+        function Book(title, author, pages, read) {
             this.title=title;
             this.author=author;
             this.pages=pages;
@@ -79,12 +79,67 @@
             }
             
         
-            return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
+            return `"${this.title}" by ${this.author}, ${this.pages} pages, ${readstatus}`;
         }
 
         function addBookToLibrary(title, author, pages, read) {
             const newBook= new Book(title,author,pages,read);
             myLibrary.push(newBook);
+            displayBooks();
+
+        }
+
+        function displayBooks(){
+
+            //easy method without making a hashmap
+            //wipe the whole main and rewrite the DOM every iteration
+
+            main.innerHTML = '';
+
+            // look at each elemetn of the array 
+            myLibrary.forEach((book,index) => {
+
+                // div container, p for content, button for removing
+                const mainItem = document.createElement('div');
+                const p_info = document.createElement('p');
+                const remove_button = document.createElement('button');
+                const read_button=document.createElement('button');
+
+                // call prototype method on the book we're on, set p to the return
+                p_info.textContent = book.readstatus();
+                remove_button.textContent = 'Remove';
+                remove_button.classList.add('remove-button');
+                read_button.textContent= 'Change Read Status';
+                read_button.classList.add('read-button');
+
+                remove_button.addEventListener('click', () => {
+                // this is why we forEach (book,index) to save index
+                // for potential removal later
+                myLibrary.splice(index, 1); 
+                displayBooks(); // Refresh the display
+
+
+                });
+
+                read_button.addEventListener('click', ()=>{
+
+                // toggle true/false for the read status, call 
+                // .readstatus on p_info.textContent to update it 
+
+                book.read=!book.read;   
+
+                p_info.textContent=book.readstatus();
+
+
+                });
+
+                mainItem.appendChild(p_info);
+                mainItem.appendChild(read_button);
+                mainItem.appendChild(remove_button);
+                mainItem.classList.add('main-item');
+                main.appendChild(mainItem);
+                
+            });
 
         }
 
@@ -97,29 +152,15 @@
             const pages = parseInt(document.getElementById('pages').value);
             const read = document.getElementById('read').checked;
 
+
+            //send this info to the constructor
+
             addBookToLibrary(title,author,pages,read);
 
+            
             form.reset();
-
             darken_div.style.display = 'none';
             form_container.style.display = 'none';
-
-            const mainItem=document.createElement('div');
-
-            const p_title=document.createElement('p');
-            const p_author=document.createElement('p');
-            const p_pages=document.createElement('p');
-            
-            p_title.textContent=title;
-            p_author.textContent=author;
-            p_pages.textContent=pages;
-
-            mainItem.appendChild(p_title);
-            mainItem.appendChild(p_author);
-            mainItem.appendChild(p_pages);
- 
-            mainItem.classList.add('main-item');
-            main.appendChild(mainItem);
 
 
 

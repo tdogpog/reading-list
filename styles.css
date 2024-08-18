@@ -43,8 +43,12 @@ body{
 
 p{
     font-size: 20px;
+    text-align: center;
+    line-height: 1.5;
 }
-button{
+
+
+.buttons{
     background-color: dodgerblue;
     color: white;
     margin: 20px;
@@ -52,7 +56,9 @@ button{
     font-size: 20px;
     border-radius: 20px;
     border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 
 input{
     border-radius: 10px;
@@ -89,7 +95,7 @@ h2{
     gap: 20px;
 }
 
-#submit{
+.submit-button{
     margin: 0;
     border-radius: 10px;
 }
@@ -109,4 +115,32 @@ h2{
     top: 0;
     left: 0;
     display: none;
+}
+
+.remove-button {
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.remove-button:hover {
+    background-color: darkred;
+}
+
+
+.read-button{
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
 }
